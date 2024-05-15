@@ -1,0 +1,54 @@
+{% extends 'rentalApp/base/service_pricing_base.html' %}
+{% load static %} 
+
+{% block title %} Blog {% endblock %}
+
+{% block content %}
+    
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          {% for blog in blogs %}
+          <div class="col-md-12 text-center d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end mb-md-5">
+              <a href="{% url 'blog_detail' blog.id %}" class="block-20 img" style="background-image: url({{blog.image.url}});">
+              </a>
+              <div class="text px-md-5 pt-4">
+              	<div class="meta mb-3">
+                  <div><a href="#">{{blog.date|timesince }}</a></div>
+                  <div><a href="#">{{blog.user}}</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span>{{blog.count_msg}}</a></div>
+                </div>
+                <h3 class="heading mt-2"><a href="#">{{blog.title}}</a></h3>
+                <p>{{blog.body}}</p>
+                <p><a href="{% url 'blog_detail' blog.id %}" class="btn btn-primary">Continue <span class="icon-long-arrow-right"></span></a></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
+        </div>
+        <div class="row mt-5">
+          <div class="col text-center">
+              <div class="block-27">
+                  <ul>
+                      {% if blogs.has_previous %}
+                          <li><a href="{% url 'blog' %}?page={{ blogs.previous_page_number }}">&lt;</a></li>
+                      {% endif %}
+                      {% for num in blogs.paginator.page_range %}
+                          {% if blogs.number == num %}
+                              <li class="active"><span>{{ num }}</span></li>
+                          {% else %}
+                              <li><a href="{% url 'blog' %}?page={{ num }}">{{ num }}</a></li>
+                          {% endif %}
+                      {% endfor %}
+                      {% if blogs.has_next %}
+                          <li><a href="{% url 'blog' %}?page={{ blogs.next_page_number }}">&gt;</a></li>
+                      {% endif %}
+                  </ul>
+              </div>
+          </div>
+      </div>
+      </div>
+    </section>
+{% endblock %}

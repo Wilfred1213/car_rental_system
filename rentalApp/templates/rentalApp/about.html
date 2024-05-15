@@ -1,0 +1,31 @@
+{% extends 'rentalApp/base/base.html' %}
+{% load static %} 
+
+{% block title %} About us {% endblock %}
+
+{% block content %}
+    <section class="ftco-section ftco-about" >
+			<div class="container">
+
+				<div class="row no-gutters">
+       
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{abouts.image.url}});">
+					</div>
+					<div class="col-md-6 wrap-about ftco-animate">
+	          <div class="heading-section heading-section-white pl-md-5">
+	          	<span class="subheading">About us</span>
+              
+	            <h2 class="mb-4">{{abouts.title}}</h2>
+
+	            <p>{{abouts.body|safe}}</p>
+	            <p><a href="{% url 'car' %}" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+              
+            </div>
+
+					</div>
+          
+				</div>
+			</div>
+		</section>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'rentalApp/base/service_pricing_base.html' %}
+{% load static %} 
+
+{% block title %} Cars {% endblock %}
+
+{% block content %}
+
+<section class="ftco-section bg-light">
+	<div class="container">
+		<div class="row">
+			{% for car in cars %}
+			<div class="col-md-4">
+				{% include 'rentalApp/base/all_cars_base.html' %}
+			</div>
+			{% endfor %}
+			
+		</div>
+		<div class="row mt-5">
+			<div class="col text-center">
+				<div class="block-27">
+					<ul>
+						{% if blogs.has_previous %}
+							<li><a href="{% url 'car' %}?page={{ cars.previous_page_number }}">&lt;</a></li>
+						{% endif %}
+						{% for num in cars.paginator.page_range %}
+							{% if cars.number == num %}
+								<li class="active"><span>{{ num }}</span></li>
+							{% else %}
+								<li><a href="{% url 'car' %}?page={{ num }}">{{ num }}</a></li>
+							{% endif %}
+						{% endfor %}
+						{% if cars.has_next %}
+							<li><a href="{% url 'car' %}?page={{ cars.next_page_number }}">&gt;</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+   {% endblock %}

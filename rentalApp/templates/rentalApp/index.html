@@ -1,0 +1,234 @@
+{% extends 'rentalApp/base/base.html' %}
+{% load static %} 
+
+{% block title %} Home page {% endblock %}
+
+{% block content %}
+    <div class="hero-wrap ftco-degree-bg" style="background-image: url({% static 'rentalApp/images/bg_1.jpg' %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
+          <div class="col-lg-8 ftco-animate">
+          	<div class="text w-100 text-center mb-md-5 pb-md-5">
+	            <h1 class="mb-4">Fast &amp; Easy Way To Rent A Car</h1>
+	            <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
+	            <a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
+	            	<div class="icon d-flex align-items-center justify-content-center">
+	            		<span class="ion-ios-play"></span>
+	            	</div>
+	            	<div class="heading-title ml-5">
+		            	<span>Easy steps for renting a car</span>
+	            	</div>
+	            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <section class="ftco-section ftco-no-pt bg-light">
+    	<div class="container">
+    		<div class="row no-gutters">
+    			<div class="col-md-12	featured-top">
+    				<div class="row no-gutters">
+	  					<div class="col-md-4 d-flex align-items-center">
+
+                <form action="#" method="post" class="request-form ftco-animate bg-primary">
+                  {% csrf_token %}
+                  <h2>Make your trip</h2>
+                  {% for message in messages %}
+                  <div class="text-danger">
+                    {{message}}
+                  </div>
+                  {% endfor %}
+                  
+                  <div class="form-group">
+                    <label for="" class="label">Select car</label>
+                    {{ form.car }}
+                  </div>
+                  <div class="form-group">
+                      <label for="" class="label">Pick-up location</label>
+                      {{ form.pick_up_location }}
+                  </div>
+                  <div class="form-group">
+                      <label for="" class="label">Drop-off location</label>
+                      {{ form.drop_off_location }}
+                  </div>
+                  <div class="d-flex">
+                      <div class="form-group mr-2">
+                          <label for="" class="label" id="datepicker">Pick-up date</label>
+                          {{ form.pick_up_date }}
+                      </div>
+                      <div class="form-group ml-2">
+                          <label for="" class="label">Drop-off date</label>
+                          {{ form.drop_off_date }}
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="" class="label">Pick-up time</label>
+                      {{ form.pick_up_time }}
+                  </div>
+                  <div class="form-group">
+                      <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+                  </div>
+              </form>
+              
+	  					</div>
+	  					{% include 'rentalApp/base/better_way.html' %}
+	  				</div>
+				</div>
+  		</div>
+    </section>
+
+
+    <section class="ftco-section ftco-no-pt bg-light">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          	<span class="subheading">What we offer</span>
+            <h2 class="mb-2">Feeatured Vehicles</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="carousel-car owl-carousel">
+              {% for car in cars %}
+    					<div class="item">
+                
+    						{% include 'rentalApp/base/all_cars_base.html' %}
+    					</div>
+              {% endfor %}
+    					
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+    <section class="ftco-section ftco-about">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{abouts.image.url}});">
+					</div>
+					<div class="col-md-6 wrap-about ftco-animate">
+	          <div class="heading-section heading-section-white pl-md-5">
+	          	<span class="subheading">About us</span>
+	            
+              <h2 class="mb-4">{{about.title}}</h2>
+
+	            <p>{{abouts.body|safe}}</p>
+	            <p><a href="{% url 'car' %}" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+              
+            </div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">Services</span>
+            <h2 class="mb-3">Our Latest Services</h2>
+          </div>
+        </div>
+        
+				<div class="row">
+          {% for latest in latests %}
+					<div class="col-md-3">
+						<div class="services services-2 w-100 text-center">
+            	<div class="icon d-flex align-items-center justify-content-center"><span class="{{latest.icon}}"></span></div>
+            	<div class="text w-100">
+                <h3 class="heading mb-2">{{latest.title}}</h3>
+                <p>{{latest.body}}</p>
+              </div>
+            </div>
+					</div>
+          {% endfor %}
+
+					
+				</div>
+			</div>
+		</section>
+
+		<section class="ftco-section ftco-intro" style="background-image: url({% static 'rentalApp/images/bg_3.jpg' %});">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row justify-content-end">
+					<div class="col-md-6 heading-section heading-section-white ftco-animate">
+            <h2 class="mb-3">Do You Want To Earn With Us? So Don't Be Late.</h2>
+            <a href="#" class="btn btn-primary btn-lg">Become A Driver</a>
+          </div>
+				</div>
+			</div>
+		</section>
+
+
+    <section class="ftco-section testimony-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">Testimonial</span>
+            <h2 class="mb-3">Happy Clients</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              {% for review in reviews %}
+              <div class="item">
+                <div class="testimony-wrap rounded text-center py-4 pb-5">
+                  <div class="user-img mb-2" style="background-image: url({{review.user.photo.url}})">
+                  </div>
+                  <div class="text pt-4">
+                    <p class="mb-4">{{review.comment}}</p>
+                    <p class="name">{{review.user}}</p>
+                    <!-- <span class="position">Marketing Manager</span> -->
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">Blog</span>
+            <h2>Recent Blog</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          {% for blog in blogs %}
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="blog-single.html" class="block-20" style="background-image: url({{blog.image.url}});">
+              </a>
+              <div class="text pt-4">
+              	<div class="meta mb-3">
+                  <div><a href="#">{{blog.date}}</a></div>
+                  <div><a href="#">{{blog.user}}</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span>{{ blog.count_msg }}</a></div>
+                </div>
+                <h3 class="heading mt-2"><a href="#">{{ blog.title }}</a></h3>
+                <p><a href="{% url 'blog_detail' blog.id %}" class="btn btn-primary">Read more</a></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+          
+        </div>
+      </div>
+    </section>	
+
+    	
+
+{% endblock %}    

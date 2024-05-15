@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Car rental {% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'rentalApp/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/magnific-popup.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'rentalApp/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/jquery.timepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'rentalApp/css/icomoon.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'rentalApp/css/style.css' %}">
+
+    <script>
+      $(function() {
+          $("#datepicker").datepicker();
+          $("#datepicker2").datepicker();
+      });
+    </script>
+    <style>
+      .availability {
+        font-weight: bold;
+        color: #fff;
+        background-color: #333;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    </style>
+  </head>
+  <body>
+    {% include 'rentalApp/base/nav_base.html' %}
+	  
+    {% block content %}{% endblock %}
+
+    {% include 'rentalApp/base/footer.html' %}
+      
+  </body>
+</html>
